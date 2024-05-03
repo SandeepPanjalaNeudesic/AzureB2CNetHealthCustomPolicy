@@ -14,7 +14,6 @@
   </BasePolicy>
 
   <BuildingBlocks>
-
     <ContentDefinitions>
       <ContentDefinition Id="api.signuporsignin">
         <LocalizedResourcesReferences MergeBehavior="Prepend">
@@ -73,7 +72,7 @@
 
       <LocalizedResources Id="api.signuporsignin.en">
         <LocalizedStrings>
-          <LocalizedString ElementType="ClaimType" ElementId="signInName" StringId="DisplayName">Email Address</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="signInName" StringId="DisplayName">Username</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="heading">Sign in</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="local_intro_generic">Sign in with your {0}</LocalizedString>
           <LocalizedString ElementType="ClaimType" ElementId="password" StringId="DisplayName">Password</LocalizedString>

@@ -66,11 +66,10 @@
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
 
-      <ClaimType Id="organizationName">
-        <DisplayName>Organization name</DisplayName>
-        <DataType>string</DataType>
-        <UserHelpText/>
-        <UserInputType>TextBox</UserInputType>
+      <ClaimType Id="organizationCode">
+          <DisplayName>Organization Code</DisplayName>
+          <DataType>string</DataType>
+          <UserInputType>TextBox</UserInputType>
       </ClaimType>
 
       <ClaimType Id="signInNames.emailAddress">
@@ -458,11 +457,12 @@
             <Item Key="AuthenticationType">None</Item>
             <Item Key="AllowInsecureAuthInProduction">true</Item>
             <Item Key="SendClaimsIn">Body</Item>
+            <Item Key="IncludeClaimResolvingInClaimsHandling">true</Item>
           </Metadata>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="username" />
-            <InputClaim ClaimTypeReferenceId="password"  />
-            <InputClaim ClaimTypeReferenceId="organizationName" Required="false" />  
+            <InputClaim ClaimTypeReferenceId="password" />
+            <InputClaim ClaimTypeReferenceId="organizationCode" DefaultValue="{OAUTH-KV:organizationCode}" AlwaysUseDefaultValue="true"/>
           </InputClaims>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
@@ -926,12 +926,6 @@
               <Value>objectId</Value>
               <Action>SkipThisOrchestrationStep</Action>
             </Precondition>
-            <!--Sample: if user sign-in with the rest API, skip this orchestration step-->
-            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
-              <Value>authenticationSource</Value>
-              <Value>socialIdpAuthentication</Value>
-              <Action>SkipThisOrchestrationStep</Action>
-            </Precondition>  
           </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmail" />
