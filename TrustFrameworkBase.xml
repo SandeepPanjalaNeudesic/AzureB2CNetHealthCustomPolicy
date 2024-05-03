@@ -705,7 +705,7 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <!--COMMENT *-->
-            <!-- <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" /> -->
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
