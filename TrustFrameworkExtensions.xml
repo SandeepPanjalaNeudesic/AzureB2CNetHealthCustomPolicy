@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrustFrameworkPolicy 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
-  PolicySchemaVersion="0.3.0.0" 
-  TenantId="nethealthpoc.onmicrosoft.com" 
-  PolicyId="B2C_1A_TrustFrameworkExtensions" 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TrustFrameworkPolicy
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
+  PolicySchemaVersion="0.3.0.0"
+  TenantId="nethealthpoc.onmicrosoft.com"
+  PolicyId="B2C_1A_TrustFrameworkExtensions"
   PublicPolicyUri="http://nethealthpoc.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
-  
+
   <BasePolicy>
     <TenantId>nethealthpoc.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
@@ -26,19 +26,19 @@
   </BuildingBlocks>
 
   <ClaimsProviders>
-
-
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
       <TechnicalProfiles>
-         <TechnicalProfile Id="login-NonInteractive">
+        <TechnicalProfile Id="login-NonInteractive">
           <Metadata>
             <Item Key="client_id">775e80b7-a839-4220-9f91-9498f7fee466</Item>
             <Item Key="IdTokenAudience">872d21f0-b0cd-40a9-9fea-94b299f51555</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="775e80b7-a839-4220-9f91-9498f7fee466" />
-            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="872d21f0-b0cd-40a9-9fea-94b299f51555" />
+            <InputClaim ClaimTypeReferenceId="client_id"
+              DefaultValue="775e80b7-a839-4220-9f91-9498f7fee466" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource"
+              DefaultValue="872d21f0-b0cd-40a9-9fea-94b299f51555" />
           </InputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
@@ -46,7 +46,7 @@
 
   </ClaimsProviders>
 
-    <!--UserJourneys>
+  <!--UserJourneys>
 	
 	</UserJourneys-->
 
