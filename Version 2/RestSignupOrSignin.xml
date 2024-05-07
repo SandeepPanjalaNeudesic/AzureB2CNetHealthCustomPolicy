@@ -20,6 +20,26 @@
                 <DataType>string</DataType>
                 <UserInputType>TextBox</UserInputType>
             </ClaimType>
+            <ClaimType Id="operationUnit">
+                <DisplayName>Operation Unit</DisplayName>
+                <DataType>string</DataType>
+                <UserInputType>TextBox</UserInputType>
+            </ClaimType>
+            <ClaimType Id="userId">
+                <DisplayName>User Id</DisplayName>
+                <DataType>string</DataType>
+                <UserInputType>TextBox</UserInputType>
+            </ClaimType>
+            <ClaimType Id="teamId">
+                <DisplayName>Team Id</DisplayName>
+                <DataType>string</DataType>
+                <UserInputType>TextBox</UserInputType>
+            </ClaimType>
+            <ClaimType Id="token">
+                <DisplayName>Custom Token</DisplayName>
+                <DataType>string</DataType>
+                <UserInputType>TextBox</UserInputType>
+            </ClaimType>
         </ClaimsSchema>
 
         <ClaimsTransformations>
@@ -61,6 +81,10 @@
                     <OutputClaims>
                         <OutputClaim ClaimTypeReferenceId="signInName" Required="true" />
                         <OutputClaim ClaimTypeReferenceId="password" Required="true" />
+                        <OutputClaim ClaimTypeReferenceId="operationUnit" />
+                        <OutputClaim ClaimTypeReferenceId="userId" />
+                        <OutputClaim ClaimTypeReferenceId="teamId" />
+                        <OutputClaim ClaimTypeReferenceId="token" />
                         <OutputClaim ClaimTypeReferenceId="authenticationSource"
                             DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
                         <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="rest-api"
@@ -100,6 +124,7 @@
                         <Item Key="AllowInsecureAuthInProduction">true</Item>
                         <Item Key="SendClaimsIn">Body</Item>
                         <Item Key="IncludeClaimResolvingInClaimsHandling">true</Item>
+                        <Item Key="DebugMode">true</Item>
                     </Metadata>
                     <InputClaims>
                         <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="username" />
@@ -111,6 +136,10 @@
                         <OutputClaim ClaimTypeReferenceId="displayName" />
                         <OutputClaim ClaimTypeReferenceId="givenName" />
                         <OutputClaim ClaimTypeReferenceId="surName" />
+                        <OutputClaim ClaimTypeReferenceId="operationUnit" />
+                        <OutputClaim ClaimTypeReferenceId="userId" />
+                        <OutputClaim ClaimTypeReferenceId="teamId" />
+                        <OutputClaim ClaimTypeReferenceId="token" />
                     </OutputClaims>
                     <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
                 </TechnicalProfile>
@@ -183,7 +212,7 @@
           This can only happen when authentication happened using a social IDP. If local account was created
                 or authentication done
           using ESTS in step 2, then an user account must exist in the directory by this time. -->
-                <OrchestrationStep Order="4" Type="ClaimsExchange">
+                <!-- <OrchestrationStep Order="4" Type="ClaimsExchange">
                     <Preconditions>
                         <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
                             <Value>objectId</Value>
@@ -194,12 +223,12 @@
                         <ClaimsExchange Id="SelfAsserted-Social"
                             TechnicalProfileReferenceId="SelfAsserted-Social" />
                     </ClaimsExchanges>
-                </OrchestrationStep>
+                </OrchestrationStep> -->
 
                 <!-- This step reads any user attributes that we may not have received when
                 authenticating using ESTS so they can be sent 
           in the token. -->
-                <OrchestrationStep Order="5" Type="ClaimsExchange">
+                <OrchestrationStep Order="4" Type="ClaimsExchange">
                     <Preconditions>
                         <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
                             <Value>authenticationSource</Value>
@@ -217,7 +246,7 @@
              from the user. So, in that case, create the user in the directory if one does not already exist 
              (verified using objectId which would be set from the last step if account was created in the
                 directory. -->
-                <OrchestrationStep Order="6" Type="ClaimsExchange">
+                <OrchestrationStep Order="5" Type="ClaimsExchange">
                     <Preconditions>
                         <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
                             <Value>objectId</Value>
@@ -230,7 +259,7 @@
                     </ClaimsExchanges>
                 </OrchestrationStep>
 
-                <OrchestrationStep Order="7" Type="SendClaims"
+                <OrchestrationStep Order="6" Type="SendClaims"
                     CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
 
             </OrchestrationSteps>
@@ -247,6 +276,10 @@
                 <OutputClaim ClaimTypeReferenceId="givenName" />
                 <OutputClaim ClaimTypeReferenceId="surname" />
                 <OutputClaim ClaimTypeReferenceId="email" />
+                <OutputClaim ClaimTypeReferenceId="operationUnit" />
+                <OutputClaim ClaimTypeReferenceId="userId" />
+                <OutputClaim ClaimTypeReferenceId="teamId" />
+                <OutputClaim ClaimTypeReferenceId="token" />
                 <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
                 <OutputClaim ClaimTypeReferenceId="identityProvider" />
                 <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true"
